@@ -15,6 +15,7 @@ class ChopperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $this->chopObj->chopIterative(7, $this->testArray));
         $this->assertEquals(3, $this->chopObj->chopIterative(15, $this->testArray));
         $this->assertEquals(17, $this->chopObj->chopIterative(66, $this->testArray));
+        $this->assertEquals(25, $this->chopObj->chopIterative(114, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopIterative(10, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopIterative(22, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopIterative(-2, $this->testArray));
@@ -26,6 +27,7 @@ class ChopperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $this->chopObj->chopRecursive(7, $this->testArray));
         $this->assertEquals(3, $this->chopObj->chopRecursive(15, $this->testArray));
         $this->assertEquals(17, $this->chopObj->chopRecursive(66, $this->testArray));
+        $this->assertEquals(25, $this->chopObj->chopRecursive(114, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopRecursive(10, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopRecursive(22, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopRecursive(-2, $this->testArray));
@@ -37,6 +39,7 @@ class ChopperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $this->chopObj->chopSlice(7, $this->testArray));
         $this->assertEquals(3, $this->chopObj->chopSlice(15, $this->testArray));
         $this->assertEquals(17, $this->chopObj->chopSlice(66, $this->testArray));
+        $this->assertEquals(25, $this->chopObj->chopSlice(114, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopSlice(10, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopSlice(22, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopSlice(-2, $this->testArray));
@@ -48,6 +51,7 @@ class ChopperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $this->chopObj->chopFirstLastPop(7, $this->testArray));
         $this->assertEquals(3, $this->chopObj->chopFirstLastPop(15, $this->testArray));
         $this->assertEquals(17, $this->chopObj->chopFirstLastPop(66, $this->testArray));
+        $this->assertEquals(25, $this->chopObj->chopFirstLastPop(114, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopFirstLastPop(10, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopFirstLastPop(22, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopFirstLastPop(-2, $this->testArray));
@@ -59,6 +63,7 @@ class ChopperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(2, $this->chopObj->chopRandom(7, $this->testArray));
         $this->assertEquals(3, $this->chopObj->chopRandom(15, $this->testArray));
         $this->assertEquals(17, $this->chopObj->chopRandom(66, $this->testArray));
+        $this->assertEquals(25, $this->chopObj->chopRandom(114, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopRandom(10, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopRandom(22, $this->testArray));
         $this->assertEquals(-1, $this->chopObj->chopRandom(-2, $this->testArray));
