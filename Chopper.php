@@ -101,7 +101,7 @@ class Chopper {
                     // return elems position (always first => 0)
                     return $this->shifted;
                 }
-                // not found, update var to maintain track of nr of shifts
+                // not found, update var to keep track on the number of shifts
 	        $this->shifted++;
             }
         }
@@ -129,6 +129,7 @@ class Chopper {
              // @question: should we remove the elements here? it's not necessary.
              unset($this->haystack[$haystackKey], $this->availableKeys[$haystackKey]);
         }
+        // no keys left
         return -1;
     }
 
