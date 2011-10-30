@@ -98,7 +98,7 @@ class Chopper {
         return -1;
     }
 
-    // get available keys, mix them up, try first, mix up again, try first etc. until running out of keys
+    // get available keys, mix them up and try until running out of keys
     public function chopRandom($needle, $haystack) {
         $this->haystack = $haystack;
         $flippedHaystack = array_flip($haystack);
