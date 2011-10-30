@@ -71,44 +71,62 @@ class Chopper {
     // search from both sides via array_shift / array_pop
     public function chopFirstLastPop($needle, $haystack) {
         $this->haystack = $haystack;
+        // we need to keep track about how often we shifted to return the correct position
         $this->shifted  = 0;
         $this->numElems = count($this->haystack);
 
         for ($i=0; $i < $this->numElems; $i++) {
+            // even first
             if ($i & 1) {
+                // set pointer to the end of haystack
 		end ($this->haystack);
+                // get number of key (last one)
                 $elemsKey     = key($this->haystack);
+                // remove last item and get value
                 $currentValue = array_pop($this->haystack);
 
                 if ($needle === $currentValue) {
+                    // calculate position and return
                     return $elemsKey + $this->shifted;
                 }
 
+            // odd here
             } else {
+                // set pointer to first element of haystack
                 reset ($this->haystack);
+                // remove first item and get the value
                 $currentValue = array_shift($this->haystack);
 
                 if ($needle === $currentValue) {
+                    // return elems position (always first => 0)
                     return $this->shifted;
                 }
-                
+                // not found, update var to maintain track of nr of shifts
 	        $this->shifted++;
             }
         }
+
+        // ran out of elements
         return -1;
     }
 
     // get available keys, mix them up and try until running out of keys
     public function chopRandom($needle, $haystack) {
-        $this->haystack = $haystack;
+        $this->haystack  = $haystack;
+        // switch elems and keys
         $flippedHaystack = array_flip($haystack);
+        // mix elems (former keys) up (randomize)
         shuffle($flippedHaystack);
+        // save mixed up elems (former keys) to iterate over it
         $this->availableKeys = $flippedHaystack;
 
         foreach ($this->availableKeys as $haystackKey) {
              if ($needle === $this->haystack[$haystackKey]) {
+                 // found the needle, return key
                  return $haystackKey;
              }
+             // not found the needle, remove element and remove key
+             // @question: should we remove the elements here? it's not necessary.
              unset($this->haystack[$haystackKey], $this->availableKeys[$haystackKey]);
         }
         return -1;
