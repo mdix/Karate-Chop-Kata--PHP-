@@ -42,5 +42,27 @@ class ChopperTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(-1, $this->chopObj->chopSlice(-2, $this->testArray));
     }
 
+    public function testChopFirstLastPop() {
+        $this->assertEquals(0, $this->chopObj->chopFirstLastPop(1, $this->testArray));
+        $this->assertEquals(1, $this->chopObj->chopFirstLastPop(2, $this->testArray));
+        $this->assertEquals(2, $this->chopObj->chopFirstLastPop(7, $this->testArray));
+        $this->assertEquals(3, $this->chopObj->chopFirstLastPop(15, $this->testArray));
+        $this->assertEquals(17, $this->chopObj->chopFirstLastPop(66, $this->testArray));
+        $this->assertEquals(-1, $this->chopObj->chopFirstLastPop(10, $this->testArray));
+        $this->assertEquals(-1, $this->chopObj->chopFirstLastPop(22, $this->testArray));
+        $this->assertEquals(-1, $this->chopObj->chopFirstLastPop(-2, $this->testArray));
+    }
+
+    public function testChopRandom() {
+        $this->assertEquals(0, $this->chopObj->chopRandom(1, $this->testArray));
+        $this->assertEquals(1, $this->chopObj->chopRandom(2, $this->testArray));
+        $this->assertEquals(2, $this->chopObj->chopRandom(7, $this->testArray));
+        $this->assertEquals(3, $this->chopObj->chopRandom(15, $this->testArray));
+        $this->assertEquals(17, $this->chopObj->chopRandom(66, $this->testArray));
+        $this->assertEquals(-1, $this->chopObj->chopRandom(10, $this->testArray));
+        $this->assertEquals(-1, $this->chopObj->chopRandom(22, $this->testArray));
+        $this->assertEquals(-1, $this->chopObj->chopRandom(-2, $this->testArray));
+    }
+    
 }
 ?>

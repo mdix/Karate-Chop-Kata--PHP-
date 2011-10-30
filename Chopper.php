@@ -2,8 +2,8 @@
 class Chopper {
     private $haystack = NULL;
     private $numElems = 0;
-    private $popped = 0;
     private $shifted = 0;
+    private $availableKeys = NULL;
     
     public function chopIterative($needle, $haystack) {
         // iterate
@@ -79,19 +79,38 @@ class Chopper {
 		end ($this->haystack);
                 $elemsKey     = key($this->haystack);
                 $currentValue = array_pop($this->haystack);
+
                 if ($needle === $currentValue) {
                     return $elemsKey + $this->shifted;
                 }
+
             } else {
                 reset ($this->haystack);
                 $currentValue = array_shift($this->haystack);
+
                 if ($needle === $currentValue) {
                     return $this->shifted;
                 }
+                
 	        $this->shifted++;
             }
         }
+        return -1;
+    }
 
+    // get available keys, mix them up, try first, mix up again, try first etc. until running out of keys
+    public function chopRandom($needle, $haystack) {
+        $this->haystack = $haystack;
+        $flippedHaystack = array_flip($haystack);
+        shuffle($flippedHaystack);
+        $this->availableKeys = $flippedHaystack;
+
+        foreach ($this->availableKeys as $haystackKey) {
+             if ($needle === $this->haystack[$haystackKey]) {
+                 return $haystackKey;
+             }
+             unset($this->haystack[$haystackKey], $this->availableKeys[$haystackKey]);
+        }
         return -1;
     }
 
