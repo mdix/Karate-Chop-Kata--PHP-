@@ -2,6 +2,8 @@
 class Chopper {
     private $haystack = NULL;
     private $numElems = 0;
+    private $popped = 0;
+    private $shifted = 0;
     
     public function chopIterative($needle, $haystack) {
         // iterate
@@ -40,7 +42,7 @@ class Chopper {
         return $this->chopRecursive($needle, $this->haystack);
     }
 
-    // IDGTS - why should this be more performant???
+    // IDGTS - why should this perform better???
     public function chopSlice($needle, $haystack) {
         $elemsHaystack      = count($haystack);
         $haystackLower      = array_slice($haystack, 0, $elemsHaystack / 2);
@@ -63,6 +65,33 @@ class Chopper {
         }
 
         // nothing found
+        return -1;
+    }
+
+    // search from both sides via array_shift / array_pop
+    public function chopFirstLastPop($needle, $haystack) {
+        $this->haystack = $haystack;
+        $this->shifted  = 0;
+        $this->numElems = count($this->haystack);
+
+        for ($i=0; $i < $this->numElems; $i++) {
+            if ($i & 1) {
+		end ($this->haystack);
+                $elemsKey     = key($this->haystack);
+                $currentValue = array_pop($this->haystack);
+                if ($needle === $currentValue) {
+                    return $elemsKey + $this->shifted;
+                }
+            } else {
+                reset ($this->haystack);
+                $currentValue = array_shift($this->haystack);
+                if ($needle === $currentValue) {
+                    return $this->shifted;
+                }
+	        $this->shifted++;
+            }
+        }
+
         return -1;
     }
 
