@@ -1,1 +1,12 @@
-3 solutions for the KarateChop Kata in PHP.
+5 solutions for the KarateChop Kata. I think the easiest approach is nr 1, the
+standard iterative approach. Just looping over the elements and searching the values.
+
+When it comes to performance I suppose that chopRandom() (see 5.) is a very good approach
+to keep a good balance between multiple calls: It doesn't matter if the needle
+is at the end / begining or in the middle of the haystack.
+
+1. chopIterative()    - standard iterative approach
+2. chopRecursive()    - recursive approach
+3. chopSlice()        - slicing the haystack in two parts (iterative)
+4. chopFirstLastPop() - searching from both sides and removing elements (iterative)
+5. chopRandom()       - search randomized trough haystack (iterative)
